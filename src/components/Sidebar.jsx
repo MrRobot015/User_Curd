@@ -17,7 +17,6 @@ const Sidebar = () => {
                         <Link to='/new_user' className='nav-link'>
                             <PersonAddAltIcon style={{ margin: "10px" }} />
                             <span className='menu-title'>New User</span>
-                            <i className='menu-arrow'></i>
                         </Link>
                     </li>{" "}
                 </ul>

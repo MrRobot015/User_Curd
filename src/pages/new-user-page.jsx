@@ -5,7 +5,19 @@ const NewUser = () => {
         <div className='main-panel'>
             <div className='content-wrapper'>
                 <div className='row'>
-                    <UserForm title={"New User"} id={0}/>
+                    <UserForm
+                        title={"New User"}
+                        user={{
+                            id: 0,
+                            full_name: "",
+                            address: "",
+                            gender: "",
+                            mobile: "",
+                            email: "",
+                            job: "",
+                            salary: 0,
+                        }}
+                    />
                 </div>
             </div>
         </div>

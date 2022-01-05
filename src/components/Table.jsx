@@ -1,7 +1,8 @@
 import React from "react";
-import DeleteOutlineOutlinedIcon from "@mui/icons-material/DeleteOutlineOutlined";
+import { Link } from "react-router-dom";
+import api from "../api/users";
 
-const Table = ({ attributes, records }) => {
+const Table = ({ attributes, records, setLoading }) => {
     return (
         <div className='table table-striped'>
             <table className='table table-striped'>
@@ -23,12 +24,14 @@ const Table = ({ attributes, records }) => {
                             <td>{record.job}</td>
                             <td>{record.salary}</td>
                             <td>
-                                <button className='btn btn-primary mr-2'>edit</button>
+                                <Link to={`/user/${record.id}/`}>
+                                    <button className='btn btn-md btn-primary mr-2'>View</button>
+                                </Link>
                             </td>
                             <td>
-                                <div style={{cursor:"pointer"}}>
-                                    <DeleteOutlineOutlinedIcon style={{ color: "red" }} />
-                                </div>
+                                <Link to={`/user/${record.id}/edit`}>
+                                    <button className='btn btn-md btn-primary mr-2'>edit</button>
+                                </Link>
                             </td>
                         </tr>
                     ))}
