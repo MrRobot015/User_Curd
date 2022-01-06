@@ -6,7 +6,7 @@ import api from "../api/users";
 
 const EditUser = () => {
     const [user, setUser] = useState([]);
-    const [isLoad, setIsLoad] = useState(true);
+    const [isLoad, setIsLoad] = useState("idle");
     
 
     const { id } = useParams();
@@ -15,22 +15,21 @@ const EditUser = () => {
         const fetchUser = async () => {
             
             try {
-                setIsLoad(false)
+                setIsLoad("loading")
                 const response = await api.get(`/users/${id}`);
                 if (response && response.data) {
                     setUser(response.data);
-                    
+                    setIsLoad("loaded")
                 }
             } catch (err) {
                 //error hanling
+                setIsLoad("error")
                 if (err.response) {
                     console.log(err.response.status);
                     console.log(err.response.data);
                 } else {
                     console.log(`Error: ${err.message}`);
                 }
-            }finally{
-                setIsLoad(true)
             }
         };
         
@@ -44,7 +43,7 @@ const EditUser = () => {
         <div className='main-panel'>
             <div className='content-wrapper'>
                 <div className='row'>
-                    {isLoad && <UserForm
+                    {isLoad === "loaded" && <UserForm
                         title={`Edit User ${user.full_name}`}
                         user={{
                             id:user.id,
